@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datakart Trace</title>
+<link rel="stylesheet" href="../css/roughcss.css">
+    <div class="container"> 
+        <div class="top-aligned"> 
+            <img src="https://gs1datakart.org/theme/gs1/images/gs1-logo.png" alt="Top Aligned Image" class="lphoto"> 
+        </div> 
+        <div class="middle-aligned"> 
+            <img src="https://gs1datakart.org/theme/gs1/images/Data-Kart.png" alt="Middle Aligned Image" class="photo"> 
+        </div>
+    </div>
+<style>
+h1 {
+text-align: center;
+font-size: 40px;
+background-color:orange;
+}
+</style>
+</head>
+<body>
+<div class="parent">
+<h1>Datakart Trace</h1>
+<div class="product-list">
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+var storedValue = sessionStorage.getItem('selectedProduct');
+var fetchedProduct = JSON.parse(storedValue);
+let container = document.createElement('div');
+container.innerHTML = `
+<img src="./images/${fetchedProduct.imgUrl}.jpg" width="100" height="100"/>
+<h3>Product Name: ${fetchedProduct.PRODUCTNAME} &emsp; Quantity: ${fetchedProduct.QUANTITY} &emsp; MRP: ${fetchedProduct.MRP}</h3>
+`;
+let currentDate = new Date();
+let mdate = new Date('04/08/2023');
+let rdate = new Date('05/08/2023');
+let ddate = new Date('06/08/2023');
+let cdate = new Date('07/08/2023');
+var duedate = 3;
+let moreDetails = document.createElement('div');
+moreDetails.innerHTML = `
+<table border="2" style="width: 950px;">
+<tbody style="font-size: 20px;">
+<tr>
+<td class="manufacture-cell">Manufacture</td>
+<td class="retailer-cell">Retailer</td>
+<td class="distributer-cell">Distributor</td>
+<td class="consumer-cell">Consumers</td>
+</tr>
+<tr>
+<td class="manufacture-cells">${fetchedProduct.Manufacture}</td>
+<td class="retailer-cells">${fetchedProduct.Retailer}</td>
+<td class="distributer-cells">${fetchedProduct.Distributor}</td>
+<td class="consumer-cells">${fetchedProduct.Consumers}</td>
+</tr>
+</tbody>
+</table>
+`;
+document.querySelector('.product-list').appendChild(container);
+document.querySelector('.parent').appendChild(moreDetails);
+document.querySelector('.manufacture-cell').style.backgroundColor = 'orange';
+if (fetchedProduct.current_stage === 'Manu') {
+if (currentDate < mdate) {
+document.querySelector('.manufacture-cells').style.backgroundColor = 'green';
+} else {
+document.querySelector('.manufacture-cells').style.backgroundColor = 'gray';
+}
+} else {
+if (currentDate > mdate) {
+document.querySelector('.manufacture-cells').style.backgroundColor = 'gray';
+} else {
+document.querySelector('.manufacture-cells').style.backgroundColor = 'red';
+}
+}
+document.querySelector('.retailer-cell').style.backgroundColor = 'orange';
+if (fetchedProduct.current_stage === 'Ret') {
+if (currentDate < mdate) {
+document.querySelector('.retailer-cells').style.backgroundColor = 'green';
+} else {
+document.querySelector('.retailer-cells').style.backgroundColor = 'gray';
+}
+} else {
+if (currentDate > mdate) {
+document.querySelector('.retailer-cells').style.backgroundColor = 'gray';
+} else {
+document.querySelector('.retailer-cells').style.backgroundColor = 'red';
+}
+}
+document.querySelector('.distributer-cell').style.backgroundColor = 'orange';
+if (fetchedProduct.current_stage === 'Dis') {
+if (currentDate < mdate) {
+document.querySelector('.distributer-cells').style.backgroundColor = 'green';
+} else {
+document.querySelector('.distributer-cells').style.backgroundColor = 'gray';
+}
+} else {
+if (currentDate > mdate) {
+document.querySelector('.distributer-cells').style.backgroundColor = 'gray';
+} else {
+document.querySelector('.distributer-cells').style.backgroundColor = 'red';
+}
+}
+document.querySelector('.consumer-cell').style.backgroundColor = 'orange';
+if (fetchedProduct.current_stage === 'Cons') {
+if (currentDate < cdate) {
+document.querySelector('.consumer-cells').style.backgroundColor = 'red';
+} else {
+document.querySelector('.consumer-cells').style.backgroundColor = 'green';
+}
+} else {
+if (currentDate > cdate) {
+document.querySelector('.consumer-cells').style.backgroundColor = 'green';
+} else {
+document.querySelector('.consumer-cells').style.backgroundColor = 'grey';
+}
+}
+});
+</script>
+</body>
+</html>

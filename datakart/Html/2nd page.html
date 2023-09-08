@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>welcome to GS1 </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <a class="nav-link" href="../html/homepage.html">Home</a>
+                <li class="nav-item">
+                   
+                <a class="nav-link" id="signout-nav">sign out</a>
+               
+                <li class="nav-item">
+                    <div class="container mt-3">
+                        <form id="searchForm" class="form-inline">
+                            <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search by Product ID" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </div>
+                
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <table class="table table-striped"> 
+        <tr class="bg-info">
+            <!-- <th>PRODUCTID</th> -->
+            <th class="bg-warning" >PRODUCTID</th>
+            <!-- <th>PRODUCTNAME</th> -->
+            <th class="bg-warning">PRODUCTNAME</th>
+            <!-- <th>QUANTITY</th> -->
+            <th class="bg-warning">QUANTITY</th>
+            <!-- <th>MRP</th> -->
+            <th class="bg-warning">MRP</th>
+        </tr>
+        <tbody id="myTable">
+        </tbody>
+    </table>
+    <script>
+
+        
+        var myArray = [
+        {'PRODUCTID':10001,'PRODUCTNAME':'iphone', 'QUANTITY':'10', 'MRP':'60,000','current_stage':'Manu','imgUrl':'https://www.dslr-zone.com/wp-content/uploads/2021/10/3-2-768x768.jpeg',"Manufacture" :"iphone13 of product number (Model Number: MLPG3HN/A) is moved to Retailer unit on 01-07-2023 on 02:44 A.M","Retailer":"iphone13 of product number (Model Number: MLPG3HN/A) is moved to Distributor unit on 02-07-2023 on 03:24 A.M","Distributor":"iphone13 of product number (Model Number: MLPG3HN/A) is reached on 03-07-2023 on 12:44 A.M","Consumers":"The Product is reached you Sucessfully Thank you",'Mdate':'01/01/2023','Rdate':'03/01/2023','Ddate':'05/01/2023',"Cdate":"07/01/2023"},
+            {'PRODUCTID':10002,'PRODUCTNAME':'Jeans', 'QUANTITY':'20', 'MRP':'1,500' ,'current_stage':'Ret','imgUrl': 'airpods.jpg',"Manufacture" :"Jeans of Style Code: BLAZE_DARKOLIVE is moved to Retailer unit on 18-07-2023 on 02:14 A.M","Retailer":"The product of Style Code: BLAZE_DARKOLIVE id moved to distributer unit on 3-03-2023","Distributor":"The product of Style Code: BLAZE_DARKOLIVE id moved to Consumers unit on 04-03-2023","Consumers":"The Product reached sucesfully"},
+            {'PRODUCTID':10003,'PRODUCTNAME':'airpods', 'QUANTITY':'45', 'MRP':'1,400','current_stage':'Dis','imgUrl': '',"Manufacture" :"Jeans of Model Name: MQD83HN/A is moved to Retailer unit on 18-07-2023 on 02:14 A.M","Retailer":"The product of Model Name: MQD83HN/A moved to distributer unit on 3-03-2023","Distributor":"The product of Model Name: MQD83HN/A moved to Consumers unit on 04-03-2023","Consumers":"The Product reached sucesfully"},
+            {'PRODUCTID':10004,'PRODUCTNAME':'lays', 'QUANTITY':'39', 'MRP':'10','current_stage':'Cons','imgUrl': '',"Manufacture" :"The lays of (Model Name:American Style) is moved to distributer unit on 17-06-2023","Retailer":"The lays of moved to distributer unit on 19-06-23","Distributor":"The lays of (Model Name:American Style) is shipped to cusumer unit on 20-02-23","Consumers":"The product reached sucesfully"},
+        ];
+
+
+        function buildTable(data) {
+            var table = document.getElementById('myTable');
+
+            for (var i = 0; i < data.length; i++) {
+                var row = `<tr>
+                    <td>${data[i].PRODUCTID}</td>
+                    <td><a href="javascript:void(0);" onclick="storeProductDetails(${i})">${data[i].PRODUCTNAME}</a></td>
+                    <td>${data[i].QUANTITY}</td>
+                    <td>${data[i].MRP}</td>
+                </tr>`;
+                table.innerHTML += row;
+            }
+        }
+
+        function storeProductDetails(index) {
+            var product = myArray[index];
+            if (product) {
+                sessionStorage.setItem('selectedProduct', JSON.stringify(product));
+                console.log(`Product "${product.PRODUCTNAME}" details stored in session storage.`);
+                window.location.href = '3rd page.html'; 
+            } else {
+                console.error('Product details not found.');
+            }
+        }
+
+        function searchProductById(productId) {
+            var product = myArray.find(item => item.PRODUCTID.toString() === productId);
+            if (product) {
+                clearTable();
+                var table = document.getElementById('myTable');
+                var row = `<tr>
+                    <td>${product.PRODUCTID}</td>
+                    <td><a href="javascript:void(0);" onclick="storeProductDetails(${myArray.indexOf(product)})">${product.PRODUCTNAME}</a></td>
+                    <td>${product.QUANTITY}</td>
+                    <td>${product.MRP}</td>
+                </tr>`;
+                table.innerHTML += row;
+            } else {
+                console.error('Product not found.');
+            }
+        }
+
+        function clearTable() {
+            var table = document.getElementById('myTable');
+            table.innerHTML = '';
+        }
+
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var searchValue = document.getElementById('searchInput').value;
+            searchProductById(searchValue);
+        });
+
+        buildTable(myArray);
+        function signOut() {
+    
+    window.location.href = "1st page.html";
+}
+
+document.getElementById("signout-nav").addEventListener("click", signOut);
+
+    
+    </script>
+</body>
+</html>

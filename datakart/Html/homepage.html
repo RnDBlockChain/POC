@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GS1 India</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="https://gs1datakart.org/theme/gs1/images/gs1-logo.png" alt="GS1 India Logo">
+            </div>
+            <ul class="menu">
+                <li><a href="#" id="homeLink">Home</a></li>
+                <li><a href="#" id="aboutLink">About Us</a></li>
+                <li><a href="#" id="productsLink">Products</a></li>
+                <li><a href="#" id="servicesLink">Services</a></li> 
+                <li><a href="#" id="contactLink">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Welcome to GS1 India</h1>
+        <p>Your trusted partner for product identification and supply chain solutions.</p>
+        <a href="#" class="cta-button">Learn More</a>
+    </section>
+
+    <section class="featured-products">
+        <h2>Featured Products</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="../prod-image.jpg" class="card-img-top" alt="Denver perfume">
+                        <div class="card-body">
+                            <h5 class="card-title">Denver perfume</h5>
+                            <p class="card-text">price:500 rs</p>
+                            <a href="#" class="btn btn-primary">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="../Electric-Kettle-054481201.jpg" class="card-img-top" alt="kettle">
+                        <div class="card-body">
+                            <h5 class="card-title"> premierkettle</h5>
+                            <p class="card-text">price:990 rs</p>
+                            <a href="#" class="btn btn-primary">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="../kissan ketchup.jpg" class="card-img-top" alt="kissan ketchup">
+                        <div class="card-body">
+                            <h5 class="card-title">kissan ketchup</h5>
+                            <p class="card-text">price:150 rs</p>
+                            <a href="#" class="btn btn-primary">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-us">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or inquiries, feel free to contact us.</p>
+        <a href="#" class="cta-button">Contact Us</a>
+    </section>
+
+    <footer>
+        <ul class="footer-menu">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+        </ul>
+        <p>&copy; 2023 GS1 India. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Function to scroll to a specific section when a link is clicked
+        function scrollToSection(sectionId) {
+            var section = document.querySelector(sectionId);
+            if (section) {
+                window.scrollTo({
+                    behavior: 'smooth',
+                    top: section.offsetTop
+                });
+            }
+        }
+
+        document.getElementById('homeLink').addEventListener('click', function() {
+            scrollToSection('.hero');
+        });
+
+        document.getElementById('aboutLink').addEventListener('click', function() {
+            scrollToSection('.about-us');
+        });
+
+        document.getElementById('productsLink').addEventListener('click', function() {
+            scrollToSection('.featured-products');
+        });
+
+        document.getElementById('servicesLink').addEventListener('click', function() {
+            scrollToSection('.services');
+        });
+
+        document.getElementById('contactLink').addEventListener('click', function() {
+            scrollToSection('.contact-us');
+        });
+    </script>
+    <img src="../html/">
+</body>
+</html>
+
