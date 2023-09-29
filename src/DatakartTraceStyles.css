@@ -1,0 +1,72 @@
+body {
+  overflow: hidden;
+}
+
+.table1 {
+  margin-left: 25px;
+  border-width: 10%;
+  height: 10px;
+}
+
+.top-right-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 8px; /* Adjust the margin to position the image precisely */
+}
+
+/* Section headers */
+.manufacture-cell,
+.retailer-cell,
+.distributor-cell,
+.consumer-cell {
+  background-color: rgb(240, 158, 33);
+  color: black;
+  padding: 5px;
+  text-align: center;
+}
+
+/* Section content styles */
+.manufacture-cells {
+  background-color: rgb(224, 21, 21);
+  color: black;
+  padding: 5px;
+  text-align: center;
+}
+
+.retailer-cells {
+  background-color: rgb(241, 235, 235);
+  color: black;
+  padding: 5px;
+  text-align: center;
+}
+
+.distributor-cells {
+  background-color: rgb(241, 235, 235);
+  color: black;
+  padding: 5px;
+  text-align: center;
+}
+
+.consumer-cells {
+  background-color: green;
+  color: black;
+  padding: 5px;
+  text-align: center;
+}
+
+/* Style the signout button */
+.btn-danger {
+  background-color: #007bff; /* Use the same style as the search button */
+  color: white;
+  border: none;
+  padding: 8px 12px; /* Adjust padding as needed */
+  font-size: 15px;
+  cursor: pointer;
+  margin-left: 10px; /* Add margin to separate it from the content */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-danger:hover {
+  background-color: #0056b3; /* Change background color on hover */
+}

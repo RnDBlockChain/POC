@@ -1,0 +1,97 @@
+/* Logintable.css */ 
+ 
+.page-container { 
+    background-color: #002C6C; 
+    height: 100vh; 
+    position:sticky;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+  } 
+   
+  .container { 
+    background-color: #ffffff; 
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    max-width: 300px; 
+    padding: 50px; 
+    text-align: center; 
+  } 
+   
+  .logo img { 
+    max-width: 50%; 
+    height: auto; 
+  } 
+   
+  .login-container { 
+    margin-top: 20px; 
+  } 
+   
+  .login-form { 
+    padding: 30px; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 5px; 
+    background-color: #ffffff; 
+  } 
+   
+  .login-heading { 
+    font-size: 24px; 
+    font-weight: bold; 
+    color: #f26334;
+    margin-bottom: 20px; 
+  } 
+   
+  .form-group { 
+    margin-bottom: 15px; 
+    text-align: left; 
+  } 
+   
+  label { 
+    display:block;
+    margin-bottom: 5px; 
+    color: #f26334;
+    font-weight: bold; 
+  } 
+   
+  select, 
+  input[type="text"], 
+  input[type="password"] { 
+    width: 100%; 
+    padding: 5px; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 3px; 
+    font-size: 16px; 
+  } 
+   
+  button[type="submit"] { 
+    width: 35%; 
+    padding: 10px; 
+    background-color: #f26334; 
+    color: #fff; 
+    border: none; 
+    border-radius: 3px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+  } 
+   
+  button[type="submit"]:hover { 
+    background-color: #0056b3; 
+  } 
+   
+  .forgot-password { 
+    margin-top: 15px; 
+  } 
+   
+  .forgot-password button { 
+    background: none; 
+    border: none; 
+    color: #007bff; 
+    font-weight: bold; 
+    font-size: 14px; 
+    cursor: pointer; 
+  } 
+   
+  .forgot-password button:hover { 
+    text-decoration:line-through
+  }

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <!-- Your navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Add Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">My Account</a>
+                </li>
+                <li class="nav-item">
+                    <div class="container mt-3">
+                        <!-- Input field for entering manufacturer ID -->
+                        <form id="searchForm" class="form-inline">
+                            <input id="manufacturerInput" class="form-control mr-sm-2" type="number" placeholder="Manufacturer ID" aria-label="Manufacturer ID">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search by Manufacturer ID</button>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <table class="table table-striped">
+        <thead>
+            <tr class="bg-info">
+                <th>PRODUCTID</th>
+                <th>PRODUCTNAME</th>
+                <th>QUANTITY</th>
+                <th>MRP</th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+        </tbody>
+    </table>
+    <script>
+        // Your JavaScript code for fetching data from the API and building the table
+        async function fetchData(manufacturer) {
+            try {
+                const response = await fetch(`/products/${manufacturer}`); // Updated endpoint URL
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                buildTable(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Function to build the product table
+        function buildTable(data) {
+            var table = document.getElementById('myTable');
+            for (var i = 0; i < data.length; i++) {
+                var row = `<tr>
+                    <td>${data[i].PRODUCTID}</td>
+                    <td><a href="javascript:void(0);" onclick="storeProductDetails(${i})">${data[i].PRODUCTNAME}</a></td>
+                    <td>${data[i].QUANTITY}</td>
+                    <td>${data[i].MRP}</td>
+                </tr>`;
+                table.innerHTML += row;
+            }
+        }
+
+        // Function to store product details in session storage
+        function storeProductDetails(index) {
+            // Use the 'data' variable directly
+            var product = data[index];
+            if (product) {
+                sessionStorage.setItem('selectedProduct', JSON.stringify(product));
+                console.log(`Product "${product.PRODUCTNAME}" details stored in session storage.`);
+                window.location.href = 'dashboard2.html';
+            } else {
+                console.error('Product details not found.');
+            }
+        }
+
+        // Modify the search functionality to use the entered manufacturer ID
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var manufacturer = document.getElementById('manufacturerInput').value;
+            fetchData(manufacturer);
+        });
+    </script>
+</body>
+</html>
